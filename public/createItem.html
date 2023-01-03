@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta charset = "UTF-8">
+<title> My Form </title>
+<style>
+#mylink{
+font-size: 25px;
+}
+</style>
+</head>
+<body align='center'>
+        <header>
+<h1>Create a New Item</h1>
+</header>
+
+<form action="/createItem" method="POST">
+<fieldset>
+<label>List Name</label>
+<input type ="text" id = 'itemName' name="itemName" placeholder="My Item" required>
+<br><br>
+
+
+<br><br>
+
+<button type ="reset">Reset</button>
+<button type ="submit">Submit</button>
+</fieldset>
+</form>
+<br><br>
+        <a id="mylink" href="./home.html">Back</a>
+</body>
+</html>

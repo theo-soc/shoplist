@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta charset = "UTF-8">
+<title> My Form </title>
+<style>
+#mylink{
+font-size: 25px;
+}
+</style>
+</head>
+<body align='center'>
+        <header>
+<h1>Create a New List</h1>
+</header>
+
+<form action="/createList" method="POST">
+<fieldset>
+<label>List Name</label>
+<input type ="text" id = 'listName' name="listName" placeholder="My list" required>
+<br><br>
+
+<label>Description</label>
+                        <textarea id="description" name="description" rows="4" cols="50">
+
+                        </textarea>
+<br><br>
+
+<button type ="reset">Reset</button>
+<button type ="submit">Submit</button>
+</fieldset>
+</form>
+<br><br>
+        <a id="mylink" href="./home.html">Back</a>
+</body>
+</html>

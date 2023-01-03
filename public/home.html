@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "UTF-8">
+	<title> My Shopping lists </title>
+	<style>
+		#mylink{
+			font-size: 25px;
+		}
+	</style>
+<script>
+ function createList(){
+   alert("CreateList");
+ }
+ function refreshLists(){
+   alert("RefreshList");
+ }
+
+ function getLists(){
+    var userid = document.getElementById('USERID').value; 
+
+    try{
+     const xhr = new XMLHttpRequest();
+     xhr.open("POST", "aws.getList");
+     const body = JSON.stringify({
+	  username: userid 
+     });
+     xhr.onload = () => {
+	  if (xhr.readyState == 4 && xhr.status == 201) {
+	 	console.log(JSON.parse(xhr.responseText));
+            
+	 }else {
+	 	console.log("error: ${xhr.status}");
+            
+            let newList = {
+             id: 11,
+             created_at: "31/12/2022",
+             shoppingListname: "List1",
+             url: "http://test"
+            }
+            let newList2 = {
+             id: 22,
+             created_at: "31/12/2022",
+             shoppingListname: "List2",
+             url: "http://test2"
+            }
+
+            var list = document.getElementById('Lists');
+            var entry = document.createElement('li');
+            entry.appendChild(document.createTextNode(newList.shoppingListname));
+            list.appendChild(entry);   
+            var entry2 = document.createElement('li');
+            var a = document.createElement('a'); 
+            var link = document.createTextNode(newList2.shoppingListname);
+            a.appendChild(link);
+            a.title = newList2.shoppingListname;
+            a.href = '';
+            a.setAttribute('onClick', 'getList('+newList2.id+')');
+            entry2.appendChild(a);  
+            list.appendChild(entry2);          
+	 }
+     };
+     xhr.send(body);
+    } catch{
+      alert("I AM HERE");
+      let newList = {
+        id: 11,
+        created_at: "31/12/2022",
+        shoppingListname: "List1",
+        url: "http://test"
+      }
+      var list = document.getElementById('Lists');
+      var entry = document.createElement('li');
+      entry.appendChild(document.createTextNode(newList.shoppingListName));
+      list.appendChild(entry);
+   }
+ }
+ function getList(id){
+   alert("Getting list with ID:"+id);
+ }
+</script>
+</head>
+<body align='center'onLoad="getLists()">
+    <header>
+	<h1>My Shopping Lists</h1>
+    </header>
+      
+	<form name="Toolbar" action="" method="POST">
+        <table border=0><tr>
+        <td><input type=button onClick="createList()" value="Create New List"></td>
+        <td><input type=button onClick="refreshLists()" value="Refresh"></td>
+        </tr></table>
+        <input type="HIDDEN" id="USERID" value="teosok">
+      </form>
+      <form action="List" action="" method="POST">
+        <ol id="Lists">
+        
+        </ol>
+      </form>
+</body>
+</html>
